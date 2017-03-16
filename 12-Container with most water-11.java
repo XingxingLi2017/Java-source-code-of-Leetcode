@@ -10,9 +10,9 @@ class Solution {
         while(low < high)
         {
         	bottom = high-low;
-        	tempHeight = Math.min(height[low], height[high]);
+        	tempHeight = height[low]<height[high]?height[low]:height[high];
         	tempArea = bottom*tempHeight;
-        	max = Math.max(max, tempArea);
+        	max = max>=tempArea?max:tempArea;
         	if(height[low] < height[high]) low++;
         	else {
 				high--;
