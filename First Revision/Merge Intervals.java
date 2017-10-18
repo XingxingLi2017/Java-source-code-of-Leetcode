@@ -7,18 +7,15 @@
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
-
 class Solution {
     /*
         sort the list based on interval.start, then use cur, next  poiter traverse the list
     */
     public List<Interval> merge(List<Interval> intervals) {
-        if(intervals.size() == 0)   
-            return new ArrayList<>();
-        List<Interval> res = new ArrayList<>();
+          if(intervals.size() == 0)   
+            return intervals;
         //sort the list by Interval.start
         Collections.sort(intervals, new Comparator(){
-            
             public int compare(Object a, Object b)
             {
                 if(a instanceof Interval && b instanceof Interval)
@@ -32,33 +29,23 @@ class Solution {
                 {
                     throw new ClassCastException();
                 }
-                
             }
         });  
-        Iterator<Interval> itr = intervals.iterator();
-        Interval cur = itr.next();
-        Interval next = null;
-        if(itr.hasNext())           //to avoid NoSuchElementException, always use hasNext() before next()
-            next = itr.next();
-        while(next != null)
+        // Traverse and Merge
+        List<Interval> res = new LinkedList<>();
+        res.add(intervals.get(0));
+        for(Interval t: intervals)
         {
-            while(next != null && next.start >= cur.start && next.start <= cur.end)
+            Interval cur = res.get(res.size()-1);
+            if(t.start <= cur.end)      // it's impossible that t.start < cur.start
             {
-                if(next.end > cur.end)  //merge the intervals
-                {
-                    cur.end = next.end;
-                }
-                if(itr.hasNext())
-                    next = itr.next();
-                else
-                    next = null;
+                cur.end = Math.max(t.end, cur.end);
             }
-            res.add(cur);
-            cur = next;
-        }
-        if(res.size() == 0)
-        {
-            res.add(cur);
+            else
+            {
+                res.add(t);
+            }
+            
         }
         return res;
         
