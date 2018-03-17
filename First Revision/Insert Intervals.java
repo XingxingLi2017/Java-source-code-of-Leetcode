@@ -7,13 +7,13 @@
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
+/*
+    Idea: divide list into three parts:
+        [interval.end<newInterval.start][overlapping part][interval.start > newInterval.end]
+        make a new node to merge the second part 
+*/
 
 class Solution {
-    /*
-        Idea: divide list into three parts:
-            [interval.end<newInterval.start][overlapping part][interval.start > newInterval.end]
-            make a new node to merge the second part 
-    */
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
         
         List<Interval> res = new LinkedList<>();
