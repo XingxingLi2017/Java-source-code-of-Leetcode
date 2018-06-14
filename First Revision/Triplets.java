@@ -20,7 +20,7 @@
 		            return 0;
 	        int len = A.length;
 	        HashMap<Integer,Integer> hash = new HashMap<>();
-	        int[] diff = new int[len];	// amount of different numbers with a[i] in [0, i-1] 
+	        int[] diff = new int[len];		// amount of different numbers with a[i] in [0, i-1] 
 	        int[] pairs = new int[len];		// total pairs in [0, i]
 	        int[] triples = new int[len];	// total triples in [0, i]
 	        boolean[] flag = new boolean[len+1];
