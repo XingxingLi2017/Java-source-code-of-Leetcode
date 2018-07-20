@@ -1,6 +1,6 @@
 /*
     similar but different from 2 sum: 2 sum problem just has 1 solution in given test set
-    
+
     use sort and two pointers which skip equal value to wipe out duplication
 */
 class Solution {
@@ -18,7 +18,6 @@ class Solution {
                 }else if(nums[low]+nums[high] > tempSum){
                     high--;
                 }else{
-                    //System.out.println("low = "+low+", high = "+high);
                     List<Integer> ls = new ArrayList<>();
                     ls.add(nums[i]);
                     ls.add(nums[low]);
